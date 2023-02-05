@@ -23,7 +23,7 @@ class TmdbSpider(scrapy.Spider):
             yield Request(link, callback = self.parse_actor_page)
 
     def parse_actor_page(self, response):
-        for show in response.css('a.tooltip'):
+        for show in response.css('table.card.credits:first-of-type a.tooltip'):
             actor_name = response.css('h2.title a::text').get()
             movie_or_TV_name = show.css('bdi::text').get()
 
